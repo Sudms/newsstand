@@ -71,7 +71,7 @@ def main():
     check_internet_connectivity()
     # load_RSS('https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml')
     # validate_schema('test.xsd', 'test.xml')
-    # print(get_RSS('https://www.nytimes.com/'))
+    print(get_RSS('https://www.engadget.com/'))
 
 
 if __name__ == '__main__':

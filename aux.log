@@ -1,0 +1,7 @@
+10/24/2018 02:17:46 PM Checking internet connectivity...
+10/24/2018 02:17:49 PM You don't have internet connection.
+10/24/2018 02:18:42 PM Checking internet connectivity...
+10/24/2018 02:18:45 PM You don't have internet connection.
+10/24/2018 02:18:45 PM Starting new HTTPS connection (1): www.engadget.com:443
+10/24/2018 02:18:47 PM https://www.engadget.com:443 "GET / HTTP/1.1" 200 None
+10/24/2018 02:18:47 PM We find a rss feed at... ['//www.engadget.com/rss.xml']

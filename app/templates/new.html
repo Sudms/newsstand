@@ -1,8 +1,17 @@
-
 {% block content %}
     <body>
-
-    <p>Código : {{ TITULO }}</p>
-
+    {% for item in items %}
+        <p><a href="{{ item.link }}">{{ item.title }}</a></p>
+        {{item.image | safe }}
+        {{item.description | safe }} 
+    {% endfor %}
     </body>
 {% endblock %}
+
+<style> 
+    .fit {
+        height          : 20rem;
+        width           : auto;
+        margin-bottom   : 2rem;
+    }
+</style>
