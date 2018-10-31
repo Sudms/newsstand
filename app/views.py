@@ -23,3 +23,24 @@ def newslist(request):
             "items": list(items)
         }
     return render(request, 'new.html', tparams)      
+
+def arquivo(request):
+    return render(request,'archive.html',{})
+
+def categoria(request):
+    return render(request, 'category.html', {})
+
+def post_gallery(request):
+    return render(request, 'gallery-post.html', {})
+
+def images(request):
+    return render(request, 'image-post.html', {})
+
+def std_post(request):
+    return render(request, 'standar-post.html', {})
+
+def home(request):
+    return render(request, 'index.html', {})
+
+
+
