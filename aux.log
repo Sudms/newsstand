@@ -5,3 +5,12 @@
 10/24/2018 02:18:45 PM Starting new HTTPS connection (1): www.engadget.com:443
 10/24/2018 02:18:47 PM https://www.engadget.com:443 "GET / HTTP/1.1" 200 None
 10/24/2018 02:18:47 PM We find a rss feed at... ['//www.engadget.com/rss.xml']
+10/31/2018 04:41:54 PM Checking internet connectivity...
+10/31/2018 04:41:57 PM You don't have internet connection.
+10/31/2018 04:41:57 PM Starting new HTTPS connection (1): www.engadget.com
+10/31/2018 04:41:59 PM https://www.engadget.com:443 "GET / HTTP/1.1" 200 None
+10/31/2018 04:42:00 PM We find a rss feed at... ['//www.engadget.com/rss.xml']
+10/31/2018 04:46:22 PM Checking internet connectivity...
+10/31/2018 04:46:25 PM You don't have internet connection.
+10/31/2018 04:47:25 PM Starting new HTTP connection (1): www.engadget.com
+10/31/2018 04:47:27 PM http://www.engadget.com:80 "GET /rss.xml HTTP/1.1" 200 8838

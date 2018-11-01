@@ -1,3 +1,6 @@
+{% block content  %}
+
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js" style="display: block;">
 	<head>
@@ -74,7 +77,6 @@
 					</nav><!-- #nav-menu-container -->
 			</div>
 		</header>
-			
 		<div class="site-main-container">
 			<section class="latest-post-area pb-120">
 				<div class="container no-padding">
@@ -83,36 +85,38 @@
 							<!-- Start latest-post Area -->
 							<div class="latest-post-wrap">
 								<h4 class="cat-title">Latest News</h4>
+								{% for item in items  %}
 								<div class="single-latest-post row align-items-center">
 									<div class="col-lg-5 post-left">
 										<div class="feature-img relative">
 											<div class="overlay overlay-bg"></div>
-											<img class="img-fluid" src="{% static 'css/l4.jpg'%}" alt="">
+											<img class="img-fluid" src="{{ item.image }}" alt="">
 										</div>
 										<ul class="tags">
-											<li><a href="http://127.0.0.1:8000/home/#">Fashion</a></li>
+											<li><a href="http://127.0.0.1:8000/home/#">Category</a></li>
 										</ul>
 									</div>
 									<div class="col-lg-7 post-right">
-										<a href="http://127.0.0.1:8000/home/image-post.html">
-											<h4>A Discount Toner Cartridge Is
-											Better Than Ever.</h4>
-										</a>
-										<ul class="meta">
-											<li><a href="http://127.0.0.1:8000/home/#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
-											<li><a href="http://127.0.0.1:8000/home/#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a></li>
-											<li><a href="http://127.0.0.1:8000/home/#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
-										</ul>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-										</p>
-										</div>
+											<a href="{{ item.link }}">
+												<h4>{{ item.title }}</h4>
+											</a>
+											<ul class="meta">
+												<li><a href="http://127.0.0.1:8000/home/#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
+												<li><a href="http://127.0.0.1:8000/home/#"><span class="lnr lnr-calendar-full"></span>{{ items.date }}</a></li>
+												{% comment %} <li><a href="http://127.0.0.1:8000/home/#"><span class="lnr lnr-bubble"></span>06 Comments</a></li> {% endcomment %}
+											</ul>
+											<p>
+												{{ item.description }}
+											</p>
 									</div>
 								</div>
+								{% endfor %}
 							</div>
 						</div>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
+		</div>
 	</body>
 </html>
+{% endblock content %}

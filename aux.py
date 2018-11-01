@@ -23,7 +23,7 @@ def check_internet_connectivity(host='8.8.8.8', port=53, timeout=3):
 
 def load_RSS(url):
     r = requests.get(url, allow_redirects=True)
-    open('test2.xml', 'w+').write(r.text)
+    open('rss2.xml', 'w+').write(r.text)
 
 def get_RSS(url):
     tree = html.fromstring(requests.get(url).content)
@@ -68,10 +68,10 @@ def validate_schema(filename_xsd, filename_xml):
         quit()
 
 def main():
-    check_internet_connectivity()
-    # load_RSS('https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml')
+    # check_internet_connectivity()
+    load_RSS('http://www.engadget.com/rss.xml')
     # validate_schema('test.xsd', 'test.xml')
-    print(get_RSS('https://www.engadget.com/'))
+    # print(get_RSS('https://www.engadget.com/'))
 
 
 if __name__ == '__main__':
