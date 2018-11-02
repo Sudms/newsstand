@@ -26,4 +26,5 @@ urlpatterns = [
     path('galeria/', views.post_gallery, name = 'gallery'),
     path('images/', views.images, name = 'images'),
     path('post/', views.std_post, name = 'post'),
+    path('about/', views.about, name = 'about')
 ]

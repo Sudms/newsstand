@@ -71,6 +71,8 @@ def images(request):
 def std_post(request):
     return render(request, 'standar-post.html', {})
 
+def about(request):
+    return render(request, 'about.html', {})    
 
 
 
