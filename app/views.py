@@ -62,32 +62,53 @@ def home(request):
                     for $c in doc("database")/feeds
                     return $c/source
                 }</root> 
-        '''
+                '''
+
         query = session.query(input)
         response = query.execute()
         query.close()
     finally:
         if session:
-            session.close()
+            dres = xmltodict.parse(response)                    
             sources = list()
-
-            # dres = xmltodict.parse(response)
-            # lres = dres['root']['source']
-            print (response, '\n')
-
-            res_tree = etree.parse(response)
-            
-            res_query = res_tree.xpath('/root/source')
-            
-            for s in res_query:
-                sources.append({'name' : s.find('name'), 'logo' : s.find('logo'), 'link' : s.find('link')})
+            for source in dres['root']['source']:
+                sources.append(
+                    {'name': source['name'], 'logo': source['logo'], 'link': source['link']})
     
+    response = None
+
+    try:
+        input = ''' 
+                <root>{
+                    for $c in distinct-values(doc("database")/feeds/source/category)
+                    order by $c
+                    return $c 
+                }</root> 
+                '''
+        query = session.query(input)
+        response = query.execute()
+        print("RESPONSE", response)
+        query.close()
+    finally:
+        if session:
+            session.close()
+            dres = xmltodict.parse(response)
+            categories = response.replace("<root>", "").replace("</root>", "").split(" ")
+            # categories = list()
+            # print(dres['root'])
+            # for cat in categories: 
+            #      categories.append({'category': cat['category']})
+
     tparams = {
         "items"     : list(items),
-        "sources"   : list(sources)
+        "sources"   : list(sources),
+        "categories": list(categories)
     }
 
     return render(request, 'index.html', tparams)     
+
+def insert(request):
+    return render(request, 'insert.html', {})
 
 def arquivo(request):
     return render(request,'archive.html',{})

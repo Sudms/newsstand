@@ -19,7 +19,7 @@
 		<!-- meta character set -->
 		
 		<!-- Site Title -->
-		<title>Magazine</title>
+		<title>Newsstand</title>
 		<link href="{% static 'css'%}" rel="stylesheet">
 		<!--
 		CSS
@@ -119,14 +119,20 @@
 						</div>
 						<div class="col-lg-4">
 							<div class="sidebars-area">
+								{% for cat in categories %}
+									<button class="w3-button w3-khaki">{{cat}}</button>
+								{% endfor %}
 								<div class="single-sidebar-widget editors-pick-widget">
 									<h6 class="title">Sources</h6>
+									<button class="w3-button w3-yellow w3-block">Insert Source</button>
+									<br>
 									<div class="editors-pick-post">
 									<div class="feature-img-wrap relative">
 								<div class="single-sidebar-widget editors-pick-widget">
 									{% for source in sources %}
-										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="{{source.link}}">
-											{{source.logo | safe}}
+										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="http://localhost:8000/home/?url={{source.link}}">
+											<img class="resize" src="{{source.logo | safe}}">
+											{% comment %} <p> {{ source.name }} </p> {% endcomment %}
 											<br>
 											</br>
 										</a>
@@ -139,3 +145,10 @@
 	</body>
 </html>
 {% endblock content %}
+
+<style>
+	.resize {
+		max-width: 100px;
+		max-height: 100px;
+	}
+</style>
