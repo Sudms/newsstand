@@ -6,55 +6,88 @@ import xmltodict
 import requests
 from BaseXClient import BaseXClient
 
-NAMESPACES = {  'dc'        : 'https://purl.org/dc/elements/1.1/', 
-                'itunes'    : 'https://www.itunes.com/dtds/podcast-1.0.dtd'}
-
-# create basex session
-session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
-
-def getrss(url):
-    tree = html.fromstring(requests.get(url).content)
-    rss = tree.xpath('//link[@type="application/rss+xml"]/@href')
-    return rss
-
 # Create your views here.
 def home(request):
-    file = 'app/data/rss2.xml'
+    if 'url' in request.GET:
+        url = request.GET['url']
+    else:
+        url = 'https://engadget.com/rss.xml'
+
+    r = requests.get(url, allow_redirects=True)
+    open('app/data/rss.xml', 'w+').write(r.text)
+    file = 'app/data/rss.xml'
     tree = etree.parse(file)
+    namespaces = dict([node for _, node in etree.iterparse(file, events=['start-ns'])])
+
     query = tree.xpath('./channel/item')
-    query2 = tree.xpath('./channel')
+    header = tree.xpath('./channel')
     items = []
     
-    for q in query2:
+    for q in header:
         feed_title, feed_link = q.find('title').text, q.find('link').text
-    
-    print(feed_title)
-    print(feed_link)
 
     for c in query:
         desc = c.find('description').text.replace('<img src="', "")
         ind = desc.find('" />')
-        
-        date = c.find('pubDate').text
         img, desc = desc[:ind], desc[ind+4:]
-        comments = c.find('comments').text
-        creator = c.find('dc:creator', NAMESPACES).text
-       
-        items.append({  'feed_title'    : feed_title,
-                        'feed_link'     : feed_link,                   
-                        'title'         : c.find('title').text, 
-                        'link'          : c.find('link').text, 
-                        'description'   : desc, 
-                        'image'         : img, 
-                        'date'          : date,
-                        'creator'       : creator,
-                        'comments'      : comments
+
+        date = c.find('pubDate').text
+        title = c.find('title').text
+        link = c.find('link').text
+        
+        # if c.find('comments'):
+        #     comments = c.find('comments').text
+        
+        creator = c.find('dc:creator', namespaces).text
+
+        items.append({  'feed_title': feed_title,
+                        'feed_link': feed_link,
+                        'title': title,
+                        'link': link,
+                        'description': desc,
+                        'image': img,
+                        'date': date,
+                        # 'comments'      : comments
+                        'creator': creator,
                     })
 
-        tparams = {
-            "items": list(items)
-        }
-    return render(request, 'index.html', tparams)      
+    response = None
+    # create basex session
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+    # session.create("database.xml", "<xml> database </xml>")
+
+    try:
+        input = ''' 
+                <root>{
+                    for $c in doc("database")/feeds
+                    return $c/source
+                }</root> 
+        '''
+        query = session.query(input)
+        response = query.execute()
+        query.close()
+    finally:
+        if session:
+            session.close()
+            sources = list()
+
+            # dres = xmltodict.parse(response)
+            # lres = dres['root']['source']
+            print (response, '\n')
+
+            res_tree = etree.parse(response)
+            
+            res_query = res_tree.xpath('/root/source')
+            
+            for s in res_query:
+                sources.append({'name' : s.find('name'), 'logo' : s.find('logo'), 'link' : s.find('link')})
+    
+    tparams = {
+        "items"     : list(items),
+        "sources"   : list(sources)
+    }
+
+    return render(request, 'index.html', tparams)     
 
 def arquivo(request):
     return render(request,'archive.html',{})

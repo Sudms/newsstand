@@ -124,9 +124,9 @@
 									<div class="editors-pick-post">
 									<div class="feature-img-wrap relative">
 								<div class="single-sidebar-widget editors-pick-widget">
-									{% for item in items %}
-										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="{{item.link}}">
-											{{item.image}}
+									{% for source in sources %}
+										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="{{source.link}}">
+											{{source.logo | safe}}
 											<br>
 											</br>
 										</a>

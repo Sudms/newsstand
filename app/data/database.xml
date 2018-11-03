@@ -1,69 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feeds>
-    <source>
-        <name>Engadget</name>
-        <logo>https://i3.feedspot.com/4438736.jpg?t=1513681406</logo>
-        <link>https://engadget.com/rss.xml</link>
-        <category>Technology</category>
-    </source>
-    <source>
-        <name>The Verge</name>
-        <logo>https://i2.feedspot.com/1779403.jpg?t=1523429003</logo>
-        <link>https://theverge.com/rss/index.xml</link>
-        <category>Technology</category>
-    </source>  
-    <source>
-        <name>CNet</name>
-        <logo>https://cnet4.cbsistatic.com/fly/bundles/cnetcss/images/core/redball/cnet-meta.jpg</logo>
-        <link>https://www.cnet.com/rss/all/</link>
-        <category>Technology</category>
-    </source>
-    <source>
-        <name>BBC News</name>
-        <logo>https://i1.feedspot.com/15793.jpg?t=1515756206</logo>
-        <link>http://feeds.bbci.co.uk/news/world/rss.xml</link>
-        <category>World</category>
-    </source>
-    <source>
-        <name>The New York Times</name>
-        <logo>https://i2.feedspot.com/4719130.jpg?t=1503055856</logo>
-        <link>https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml</link>
-        <category>World</category>
-    </source>
-    <source>
-        <name>CNN</name>
-        <logo>https://i1.feedspot.com/30696.jpg?t=1515667382</logo>
-        <link>http://rss.cnn.com/rss/edition_world.rss</link>
-        <category>World</category>
-    </source>
-    <source>
-        <name>Washington Post</name>
-        <logo>https://miro.medium.com/fit/c/240/240/1*Y6_hPA_UNbavH2ToABQ7pA.jpeg</logo>
-        <link>http://feeds.washingtonpost.com/rss/rss_blogpost?noredirect=on</link>
-        <category>World</category>
-    </source>
-    <source>
-        <name>The Guardian</name>
-        <logo>https://icon2.kisspng.com/20180811/uyj/kisspng-the-guardian-guardian-media-group-theguardian-com-the-guardian-5b6e639663d526.8678301415339611104089.jpg</logo>
-        <link>https://www.theguardian.com/uk/rss</link>
-        <category>World</category>
-    </source>
-    <source>
-        <name>TechWorld</name>
-        <logo>https://pbs.twimg.com/profile_images/552148828820742144/jBSXvkVc_400x400.png</logo>
-        <link>https://www.techworld.com/news/rss</link>
-        <category>Technology</category>
-    </source>
-    <source>
-        <name></name>
-        <logo></logo>
-        <link></link>
-        <category></category>
-    </source>
-    <source>
-        <name></name>
-        <logo></logo>
-        <link></link>
-        <category></category>
-    </source>
-</feeds>
+<root>   
+    <feeds>
+        <source>
+            <id>1</id>
+            <name>Engadget</name>
+            <logo>https://i3.feedspot.com/4438736.jpg?t=1513681406</logo>
+            <link>https://engadget.com/rss.xml</link>
+            <category>Technology</category>
+        </source>
+        <source>
+            <id>2</id>
+            <name>The Verge</name>
+            <logo>https://i2.feedspot.com/1779403.jpg?t=1523429003</logo>
+            <link>https://theverge.com/rss/index.xml</link>
+            <category>Technology</category>
+        </source>
+        <source>
+            <id>3</id>
+            <name>CNet</name>
+            <logo>https://cnet4.cbsistatic.com/fly/bundles/cnetcss/images/core/redball/cnet-meta.jpg</logo>
+            <link>https://www.cnet.com/rss/all/</link>
+            <category>Technology</category>
+        </source>
+        <source>
+            <id>4</id>
+            <name>BBC News</name>
+            <logo>https://i1.feedspot.com/15793.jpg?t=1515756206</logo>
+            <link>http://feeds.bbci.co.uk/news/world/rss.xml</link>
+            <category>World</category>
+        </source>
+        <source>
+            <id>4</id>
+            <name>The New York Times</name>
+            <logo>https://i2.feedspot.com/4719130.jpg?t=1503055856</logo>
+            <link>https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml</link>
+            <category>World</category>
+        </source>
+        <source>
+            <id>5</id>
+            <name>CNN</name>
+            <logo>https://i1.feedspot.com/30696.jpg?t=1515667382</logo>
+            <link>http://rss.cnn.com/rss/edition_world.rss</link>
+            <category>World</category>
+        </source>
+        <source>
+            <id>6</id>
+            <name>Washington Post</name>
+            <logo>https://miro.medium.com/fit/c/240/240/1*Y6_hPA_UNbavH2ToABQ7pA.jpeg</logo>
+            <link>http://feeds.washingtonpost.com/rss/rss_blogpost?noredirect=on</link>
+            <category>World</category>
+        </source>
+        <source>
+            <id>7</id>
+            <name>The Guardian</name>
+            <logo>https://icon2.kisspng.com/20180811/uyj/kisspng-the-guardian-guardian-media-group-theguardian-com-the-guardian-5b6e639663d526.8678301415339611104089.jpg</logo>
+            <link>https://www.theguardian.com/uk/rss</link>
+            <category>World</category>
+        </source>
+        <source>
+            <id>8</id>
+            <name>TechWorld</name>
+            <logo>https://pbs.twimg.com/profile_images/552148828820742144/jBSXvkVc_400x400.png</logo>
+            <link>https://www.techworld.com/news/rss</link>
+            <category>Technology</category>
+        </source>
+        <source>
+            <id>9</id>
+            <name>WIRED | Science</name>
+            <logo>https://i1.feedspot.com/4478217.jpg</logo>
+            <link>https://www.wired.com/category/science/feed</link>
+            <category>Science</category>
+        </source>
+        <source>
+            <name>IGN Portugal</name>
+            <logo>https://pt.ign.com/s/ign/social_logo.png</logo>
+            <link>https://pt.ign.com/news.xml</link>
+            <category>Technology</category>
+        </source>
+    </feeds>
+</root>
