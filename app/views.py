@@ -62,7 +62,7 @@ def home(request):
                     for $c in doc("database")/feeds
                     return $c/source
                 }</root> 
-                '''
+        '''
 
         query = session.query(input)
         response = query.execute()
@@ -84,20 +84,16 @@ def home(request):
                     order by $c
                     return $c 
                 }</root> 
-                '''
+        '''
+
         query = session.query(input)
         response = query.execute()
-        print("RESPONSE", response)
         query.close()
     finally:
         if session:
             session.close()
             dres = xmltodict.parse(response)
             categories = response.replace("<root>", "").replace("</root>", "").split(" ")
-            # categories = list()
-            # print(dres['root'])
-            # for cat in categories: 
-            #      categories.append({'category': cat['category']})
 
     tparams = {
         "items"     : list(items),
@@ -108,6 +104,34 @@ def home(request):
     return render(request, 'index.html', tparams)     
 
 def insert(request):
+    # create basex session
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+    response = id = None
+    name = logo = link = category = None
+
+    try:
+        input = ''' for $c in doc('database')/feeds/source/id return $c '''
+        query = session.query(input)
+        response = query.execute()
+        query.close()
+    finally:
+        if session:
+            res = response.replace("<id>", "").replace("</id>", "").replace("\n", "")
+            id = int(max(list(res)))
+
+    response = None
+
+    # INPUT FORM HERE
+
+    try:
+        input = ''' insert nodes <source><id>{}</id> <name>{}</name> <logo>{}</logo> <link>{}</link> <category>{}</category></source> into doc('database')/feeds '''.format(id+1, name, logo, link, category)
+        query = session.query(input)
+        response = query.execute()
+        query.close()
+    finally:
+        if session:
+            session.close()
+            print(response)
     return render(request, 'insert.html', {})
 
 def arquivo(request):

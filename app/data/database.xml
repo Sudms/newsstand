@@ -71,6 +71,7 @@
         <category>Science</category>
     </source>
     <source>
+        <id>10</id>
         <name>IGN Portugal</name>
         <logo>https://pt.ign.com/s/ign/social_logo.png</logo>
         <link>https://pt.ign.com/news.xml</link>
