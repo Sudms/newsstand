@@ -110,6 +110,46 @@ def insert(request):
     name = logo = link = category = None
 
     try:
+        input = ''' 
+                <root>{
+                    for $c in doc("database")/feeds
+                    return $c/source
+                }</root> 
+        '''
+
+        query = session.query(input)
+        response = query.execute()
+        query.close()
+    finally:
+        if session:
+            dres = xmltodict.parse(response)
+            sources = list()
+            for source in dres['root']['source']:
+                sources.append(
+                    {'name': source['name'], 'logo': source['logo'], 'link': source['link']})
+
+    response = None
+
+    try:
+        input = ''' 
+                <root>{
+                    for $c in distinct-values(doc("database")/feeds/source/category)
+                    order by $c
+                    return $c 
+                }</root> 
+        '''
+
+        query = session.query(input)
+        response = query.execute()
+        query.close()
+    finally:
+        if session:
+            dres = xmltodict.parse(response)
+            categories = response.replace("<root>", "").replace("</root>", "").split(" ")
+
+    response = None
+
+    try:
         input = ''' for $c in doc('database')/feeds/source/id return $c '''
         query = session.query(input)
         response = query.execute()
@@ -132,7 +172,14 @@ def insert(request):
         if session:
             session.close()
             print(response)
-    return render(request, 'insert.html', {})
+
+
+    tpararms = {
+        "sources": list(sources),
+        "categories": list(categories)
+    }
+    
+    return render(request, 'insert.html', tpararms)
 
 def arquivo(request):
     return render(request,'archive.html',{})

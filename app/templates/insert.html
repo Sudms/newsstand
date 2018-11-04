@@ -1,0 +1,126 @@
+{% block content  %}
+
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" style="display: block;">
+	<head>
+		{% load static %}
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="colorlib">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		
+		<!-- Site Title -->
+		<title>Newsstand</title>
+		<link href="{% static 'css'%}" rel="stylesheet">
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+		<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+		<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+		<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+		<link rel="stylesheet" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+		<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+		<script src="{% static 'js/popper.min.js'%}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		{% comment %} <script src="file:///home/susybalboa/Desktop/Magazine_files/js_key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> {% endcomment %}
+		<script src="{% static 'js/easing.min.js'%}"></script>
+		<script src="{% static 'js/hoverIntent.js'%}"></script>
+		<script src="{% static 'js/superfish.min.js'%}"></script>
+		<script src="{% static 'js/jquery.ajaxchimp.min.js'%}"></script>
+		<script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
+		<script src="{% static 'js/mn-accordion.js'%}"></script>
+		<script src="{% static 'js/jquery-ui.js'%}"></script>
+		<script src="{% static 'js/jquery.nice-select.min.js'%}"></script>
+		<script src="{% static 'js/owl.carousel.min.js'%}"></script>
+		<script src="{% static 'js/mail-script.js'%}"></script>
+		<script src="{% static 'js/main.js'%}"></script>
+		
+	</head>
+	
+	<body style="display: block;">
+		<header>
+			<div class="logo-wrap">
+				<div class="container">
+					<div class="row justify-content-between align-items-center">
+						<div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
+							<a href="http://127.0.0.1:8000/home/">
+								<img class="img-fluid" src="{% static 'img/logo.png' %}" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<div class="container main-menu" id="main-menu"><button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i><span class="menu-title">Menu</span> </button><button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i><span class="menu-title">Menu</span> </button>
+				<div class="row align-items-center justify-content-between">
+					<nav id="nav-menu-container">
+						<ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: auto;">
+							<li class="menu-active"><a href="http://127.0.0.1:8000/home/">Home</a></li>
+							<li><a href="http://127.0.0.1:8000/home/archive.html">Archive</a></li>
+							<li><a href="http://127.0.0.1:8000/home/category.html">Category</a></li>
+							<li><a href="http://127.0.0.1:8000/home/about.html">About</a></li>
+						</ul>
+					</nav><!-- #nav-menu-container -->
+			</div>
+		</header>
+		<div class="site-main-container">
+			<section class="latest-post-area pb-120">
+				<div class="container no-padding">
+						
+					<div class="container row">
+						<div class="col-lg-8 post-list row align-items-center justify-content-between">
+						
+							<!-- Start latest-post Area -->
+							<div class="latest-post-wrap">
+								<h4 class="cat-title"> Insert Source </h4>
+							</div>
+
+						</div>
+						<div class="col-lg-4">
+							<div class="sidebars-area">
+								{% for cat in categories %}
+									<button class="w3-button w3-khaki">{{cat}}</button>
+								{% endfor %}
+								<div class="single-sidebar-widget editors-pick-widget">
+									<h6 class="title">Sources</h6>
+									<br>
+									<div class="editors-pick-post">
+									<div class="feature-img-wrap relative">
+								<div class="single-sidebar-widget editors-pick-widget">
+									{% for source in sources %}
+										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="http://localhost:8000/home/?url={{source.link}}">
+											<img class="resize" src="{{source.logo | safe}}">
+											{% comment %} <p> {{ source.name }} </p> {% endcomment %}
+											<br>
+											</br>
+										</a>
+									{% endfor %}
+								</div>
+							</div>
+					</div>
+			</section>
+		</div>
+	</body>
+</html>
+{% endblock content %}
+
+<style>
+	.resize {
+		max-width: 100px;
+		max-height: 100px;
+	}
+</style>
