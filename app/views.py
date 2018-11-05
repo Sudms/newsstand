@@ -162,17 +162,23 @@ def insert(request):
     response = None
 
     # INPUT FORM HERE
-
+    
+       
     try:
-        input = ''' insert nodes <source><id>{}</id> <name>{}</name> <logo>{}</logo> <link>{}</link> <category>{}</category></source> into doc('database')/feeds '''.format(id+1, name, logo, link, category)
-        query = session.query(input)
-        response = query.execute()
-        query.close()
+        if 'name' in request.POST:
+            name = request.POST.get("name")
+            logo = request.POST.get("logo")
+            link = request.POST.get("link")
+            category = request.POST.get("category")
+
+            input = ''' insert nodes <source><id>{}</id> <name>{}</name> <logo>{}</logo> <link>{}</link> <category>{}</category></source> into doc('database')/feeds '''.format(id+1, name, logo, link, category)
+            query = session.query(input)
+            response = query.execute()
+            query.close()
     finally:
         if session:
             session.close()
             print(response)
-
 
     tpararms = {
         "sources": list(sources),

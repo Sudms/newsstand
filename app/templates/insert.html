@@ -87,6 +87,52 @@
 							<!-- Start latest-post Area -->
 							<div class="latest-post-wrap">
 								<h4 class="cat-title"> Insert Source </h4>
+						<div class="single-latest-post row align-items-center">
+									<div class="col-lg-5 post-left">
+				<form method="post" class="contact-form">
+					{% csrf_token %}
+					
+					<label class="label-input" for="name">Name</label>
+					<div class="wrap-input rs1">
+					<input class="input" type="text" name="name">
+					<span class="focus-input"></span>
+					</div>
+				
+					<label class="label-input" for="logo">Logo</label>
+					<div class="wrap-input">
+					<input class="input" type="text" name="logo">
+					<span class="focus-input"></span>
+					</div>
+
+					<label class="label-input" for="link">Link RSS</label>
+					<div class="wrap-input">
+					<input class="input" type="text" name="link">
+					<span class="focus-input"></span>
+					</div>
+
+					<label class="label-input" for="category">Category</label>
+					<div class="wrap-input">
+					<input class="input" name="category" ></input>
+					<span class="focus-input"></span>
+					</div>
+					<br>
+					
+					<div class="container-contact-form-btn">
+						<button class="contact-form-btn" type="submit">
+							<span>
+								Submit
+								<i class="zmdi zmdi-arrow-right m-l-8"></i>
+							</span>
+						</button>
+					</div>
+					</div>
+					</div>
+				</form>
+							
+							
+							
+						
+						
 							</div>
 
 						</div>
