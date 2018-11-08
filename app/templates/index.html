@@ -36,7 +36,6 @@
 		<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
 		<script src="{% static 'js/popper.min.js'%}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
-		{% comment %} <script src="file:///home/susybalboa/Desktop/Magazine_files/js_key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> {% endcomment %}
 		<script src="{% static 'js/easing.min.js'%}"></script>
 		<script src="{% static 'js/hoverIntent.js'%}"></script>
 		<script src="{% static 'js/superfish.min.js'%}"></script>
@@ -57,7 +56,7 @@
 				<div class="container">
 					<div class="row justify-content-between align-items-center">
 						<div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
-							<a href="http://127.0.0.1:8000/home/index.html">
+							<a href="/">
 								<img class="img-fluid" src="{% static 'img/logo.png' %}" alt="">
 							</a>
 						</div>
@@ -69,10 +68,7 @@
 				<div class="row align-items-center justify-content-between">
 					<nav id="nav-menu-container">
 						<ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: auto;">
-							<li class="menu-active"><a href="http://127.0.0.1:8000/home/">Home</a></li>
-							{% comment %} <li><a href="http://127.0.0.1:8000/home/archive.html">Archive</a></li>
-							<li><a href="http://127.0.0.1:8000/home/category.html">Category</a></li>
-							<li><a href="http://127.0.0.1:8000/home/about.html">About</a></li> {% endcomment %}
+							<li class="menu-active"><a href="/">Home</a></li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
 			</div>
@@ -96,7 +92,7 @@
 											<img class="img-fluid" src="{{ item.image | safe}}" alt="">
 										</div>
 										<ul class="tags">
-											<li><a href="http://127.0.0.1:8000/home/#">Category</a></li>
+											<li><a href="/">Category</a></li>
 										</ul>
 									</div>
 									<div class="col-lg-7 post-right">
@@ -123,13 +119,13 @@
 								{% endfor %}
 								<div class="single-sidebar-widget editors-pick-widget">
 									<h6 class="title">Sources</h6>
-									<a class="w3-button w3-yellow w3-block" href="http://127.0.0.1:8000/insert/">Insert Source</a>
+									<a class="w3-button w3-yellow w3-block" href="/insert/">Insert Source</a>
 									<br>
 									<div class="editors-pick-post">
 									<div class="feature-img-wrap relative">
 								<div class="single-sidebar-widget editors-pick-widget">
 									{% for source in sources %}
-										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="http://localhost:8000/home/?url={{source.link}}">
+										<a class="w3-button w3-white w3-border w3-border-red w3-round-large" href="/?url={{source.link}}">
 											<img class="resize" src="{{source.logo | safe}}">
 											{% comment %} <p> {{ source.name }} </p> {% endcomment %}
 											<br>

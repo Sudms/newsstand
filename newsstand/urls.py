@@ -19,14 +19,7 @@ from django.urls import path, re_path
 from app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('home/', views.home, name = 'home'),
-    re_path(r'^home/(.*)', views.home),
+    path('', views.home, name = 'home'),
+    re_path(r'^/(.*)', views.home),
     path('insert/', views.insert),
-    path('archive/', views.arquivo, name = 'archive'),
-    path('category/', views.categoria, name = 'category'),
-    path('galeria/', views.post_gallery, name = 'gallery'),
-    path('images/', views.images, name = 'images'),
-    path('post/', views.std_post, name = 'post'),
-    path('about/', views.about, name = 'about')
 ]

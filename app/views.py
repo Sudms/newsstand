@@ -24,14 +24,13 @@ def home(request):
     # xmlschema_doc = etree.parse(schema_to_check)
     # xmlschema = etree.XMLSchema(xmlschema_doc)
     
-    # # # # # # # # # # # #  XSLT # # # # # # # # # # # # # # 
-    # xslt_file = open('app/data/new.xsl', 'r')             #
-    # xslt = etree.parse(xslt_file)                         # 
-    # xslt = etree.XSLT(xslt)                               #
-    # xhtml_file = open('new.html', 'wr+').write(str(xslt)) #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # xslt_file = open('app/data/new.xsl', 'r')            
+    # xslt = etree.parse(xslt_file)                        
+    # xslt = etree.XSLT(xslt)                              
+    # xhtml_file = open('new.html', 'wr+').write(str(xslt))
 
     # XML Schema (XSD)
+
     # try:
     #     tree = etree.parse(xml_to_check)
     #     print('XML well formed, syntax ok.')
@@ -162,10 +161,10 @@ def insert(request):
 
     try:
         input = ''' 
-                <root>{
-                    for $c in doc("database")/feeds
-                    return $c/source
-                }</root> 
+            <root>{
+                for $c in doc("database")/feeds
+                return $c/source
+            }</root> 
         '''
 
         query = session.query(input)
@@ -229,30 +228,8 @@ def insert(request):
             print(response)
 
     tpararms = {
-        "sources": list(sources),
+        "sources"   : list(sources),
         "categories": list(categories)
     }
     
     return render(request, 'insert.html', tpararms)
-
-def arquivo(request):
-    return render(request,'archive.html',{})
-
-def categoria(request):
-    return render(request, 'category.html', {})
-
-def post_gallery(request):
-    return render(request, 'gallery-post.html', {})
-
-def images(request):
-    return render(request, 'image-post.html', {})
-
-def std_post(request):
-    return render(request, 'standar-post.html', {})
-
-def about(request):
-    return render(request, 'about.html', {})    
-
-
-
-
