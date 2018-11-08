@@ -13,13 +13,58 @@ def home(request):
     else:
         url = 'https://engadget.com/rss.xml'
 
+    rss_file = 'app/data/rss.xml'
     r = requests.get(url, allow_redirects=True)
-    open('app/data/rss.xml', 'w+').write(r.text)
-    file = 'app/data/rss.xml'
-    tree = etree.parse(file)
-    namespaces = dict([node for _, node in etree.iterparse(file, events=['start-ns'])])
+    open(rss_file, 'w+').write(r.text)
+    tree = etree.parse(rss_file)
+    # namespaces = dict([node for _, node in etree.iterparse(rss_file, events=['start-ns'])])
 
-    query = tree.xpath('./channel/item')
+    # schema_to_check = open('app/data/rss.xsd', 'r')
+    # xml_to_check = open(rss_file, 'r')
+    # xmlschema_doc = etree.parse(schema_to_check)
+    # xmlschema = etree.XMLSchema(xmlschema_doc)
+    
+    # # # # # # # # # # # #  XSLT # # # # # # # # # # # # # # 
+    # xslt_file = open('app/data/new.xsl', 'r')             #
+    # xslt = etree.parse(xslt_file)                         # 
+    # xslt = etree.XSLT(xslt)                               #
+    # xhtml_file = open('new.html', 'wr+').write(str(xslt)) #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+    # XML Schema (XSD)
+    # try:
+    #     tree = etree.parse(xml_to_check)
+    #     print('XML well formed, syntax ok.')
+    # except IOError:
+    #     print('Invalid File')
+    # except etree.XMLSyntaxError as err:
+    #     print('XML Syntax Error, see error_syntax.log')
+    #     with open('error_syntax.log', 'w') as error_log_file:
+    #         error_log_file.write(str(err.error_log))
+    #     quit()
+    # except:
+    #     print('Unknown error, exiting.')
+    #     quit()
+
+    # try:
+    #     xmlschema.assertValid(tree)
+    #     print('XML valid, schema validation ok.')
+    # except etree.DocumentInvalid as err:
+    #     print('Schema validation error, see error_schema.log')
+    #     with open('error_schema.log', 'w') as error_log_file:
+    #         error_log_file.write(str(err.error_log))
+    #     quit()
+    # except:
+    #     print('Unknown error, exiting.')
+    #     quit()
+
+    namespaces = dict(
+        [node for _, node in etree.iterparse(rss_file, events=['start-ns'])])
+
+    if not tree.xpath('./channel/item'):
+        query = tree.xpath('./channel/entry')
+    else:
+        query = tree.xpath('./channel/item')
     header = tree.xpath('./channel')
     items = []
     
@@ -27,18 +72,25 @@ def home(request):
         feed_title, feed_link = q.find('title').text, q.find('link').text
 
     for c in query:
-        desc = c.find('description').text.replace('<img src="', "")
-        ind = desc.find('" />')
-        img, desc = desc[:ind], desc[ind+4:]
+        if not 'media' in namespaces:
+            desc = c.find('description').text.replace('<img src="', "")
+            ind = desc.find('" />')
+            img, desc = desc[:ind], desc[ind+4:]
+        else:
+            desc = c.find('description').text
+            # img = c.find('media:thumbnail[@url]', namespaces).text
 
         date = c.find('pubDate').text
         title = c.find('title').text
         link = c.find('link').text
         
+        if 'dc' in namespaces:
+            creator = c.find('dc:creator', namespaces).text
+        else:
+            creator = c.find('author').text
+
         # if c.find('comments'):
         #     comments = c.find('comments').text
-        
-        creator = c.find('dc:creator', namespaces).text
 
         items.append({  'feed_title': feed_title,
                         'feed_link': feed_link,
@@ -47,7 +99,6 @@ def home(request):
                         'description': desc,
                         'image': img,
                         'date': date,
-                        # 'comments'      : comments
                         'creator': creator,
                     })
 
@@ -160,9 +211,6 @@ def insert(request):
             id = int(max(list(res)))
 
     response = None
-
-    # INPUT FORM HERE
-    
        
     try:
         if 'name' in request.POST:

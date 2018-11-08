@@ -1,0 +1,68 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" 
+      xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:itunes="https://www.itunes.com/dtds/podcast-1.0.dtd">
+      <xs:element name="url" type="xs:string"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="link" type="xs:string"/>
+      <xs:element name="guid">
+            <xs:complexType>
+                  <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                              <xs:attribute type="xs:string" name="isPermaLink" use="optional"/>
+                        </xs:extension>
+                  </xs:simpleContent>
+            </xs:complexType>
+      </xs:element>
+      <xs:element name="comments" type="xs:string"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element name="category" type="xs:string"/>
+      <xs:element name="pubDate" type="xs:string"/>
+      <xs:element name="image">
+            <xs:complexType>
+                  <xs:sequence>
+                        <xs:element ref="url"/>
+                        <xs:element ref="title"/>
+                        <xs:element ref="link"/>
+                  </xs:sequence>
+            </xs:complexType>
+      </xs:element>
+      <xs:element name="language" type="xs:string"/>
+      <xs:element name="copyright" type="xs:string"/>
+      <xs:element name="item">
+            <xs:complexType>
+                  <xs:sequence>
+                        <xs:element ref="title"/>
+                        <xs:element ref="link"/>
+                        <xs:element ref="guid"/>
+                        <xs:element ref="comments"/>
+                        <xs:element ref="description"/>
+                        <xs:element ref="category" maxOccurs="unbounded" minOccurs="0"/>
+                        <xs:element ref="ns:creator" 
+                              xmlns:ns="https://purl.org/dc/elements/1.1/"/>
+                        <xs:element ref="pubDate"/>
+                        <xs:element ref="ns:identifier" 
+                              xmlns:ns="https://purl.org/dc/elements/1.1/"/>
+                  </xs:sequence>
+            </xs:complexType>
+      </xs:element>
+      <xs:element name="channel">
+            <xs:complexType>
+                  <xs:sequence>
+                        <xs:element ref="title"/>
+                        <xs:element ref="link"/>
+                        <xs:element ref="image"/>
+                        <xs:element ref="language"/>
+                        <xs:element ref="description"/>
+                        <xs:element ref="copyright"/>
+                        <xs:element ref="item" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:sequence>
+            </xs:complexType>
+      </xs:element>
+      <xs:element name="rss">
+            <xs:complexType>
+                  <xs:sequence>
+                        <xs:element ref="channel"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:float" name="version"/>
+            </xs:complexType>
+      </xs:element>
+</xs:schema>

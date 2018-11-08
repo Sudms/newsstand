@@ -9,10 +9,10 @@
     </source>
     <source>
         <id>2</id>
-        <name>The Verge</name>
-        <logo>https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/The_Verge_Logo_2016.svg/200px-The_Verge_Logo_2016.svg.png</logo>
-        <link>https://theverge.com/rss/index.xml</link>
-        <category>Technology</category>
+        <name>Buzzfeed</name>
+        <logo>https://i3.feedspot.com/4436201.jpg?t=1522998066</logo>
+        <link>https://www.buzzfeed.com/world.xml</link>
+        <category>World</category>
     </source>
     <source>
         <id>3</id>
@@ -76,5 +76,12 @@
         <logo>https://pt.ign.com/s/ign/social_logo.png</logo>
         <link>https://pt.ign.com/news.xml</link>
         <category>Technology</category>
+    </source>
+    <source>
+        <id>10</id>
+        <name>NPR</name>
+        <logo>https://images-na.ssl-images-amazon.com/images/I/717g1eZuXGL.png</logo>
+        <link>http://www.npr.org/rss/rss.php?id=1004</link>
+        <category>World</category>
     </source>
 </feeds>
